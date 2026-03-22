@@ -20,7 +20,7 @@ you defeat enemies by forming words from a 4x4 letter grid.
 ## Screenshots
 
 ![Main Menu](Hangman/mainmenu)
-![Gameplay](screenshots/gameplay.png)
+![Gameplay](Hangman/gamemenu)
 ## Features
 
 - 4x4 random letter grid
