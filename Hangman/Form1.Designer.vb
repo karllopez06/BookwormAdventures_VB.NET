@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class picBackground
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(picBackground))
         GameTimer = New Timer(components)
         EnemyMino = New PictureBox()
         PictureBox3 = New PictureBox()
@@ -52,14 +52,22 @@ Partial Class Form1
         EnemyHPBar = New ProgressBar()
         lblWordDisplay = New Label()
         DamageFlickerTimer = New Timer(components)
-        Lex = New Label()
-        Label2 = New Label()
+        lblPlayerName = New Label()
+        lblEnemyName = New Label()
         lblscore = New Label()
+        Potion = New PictureBox()
+        Shield = New PictureBox()
+        Label1 = New Label()
+        Label3 = New Label()
+        lblGold = New Label()
+        btnInstaKill = New Button()
         CType(EnemyMino, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         CType(LexWorm, ComponentModel.ISupportInitialize).BeginInit()
         pnlGrid.SuspendLayout()
         tblGrid.SuspendLayout()
+        CType(Potion, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Shield, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' GameTimer
@@ -337,39 +345,104 @@ Partial Class Form1
         lblWordDisplay.Size = New Size(2, 53)
         lblWordDisplay.TabIndex = 13
         ' 
-        ' Lex
+        ' lblPlayerName
         ' 
-        Lex.AutoSize = True
-        Lex.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Lex.ForeColor = SystemColors.ControlLightLight
-        Lex.Location = New Point(21, 48)
-        Lex.Name = "Lex"
-        Lex.Size = New Size(47, 30)
-        Lex.TabIndex = 14
-        Lex.Text = "Lex"
+        lblPlayerName.AutoSize = True
+        lblPlayerName.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblPlayerName.ForeColor = SystemColors.ControlLightLight
+        lblPlayerName.Location = New Point(21, 48)
+        lblPlayerName.Name = "lblPlayerName"
+        lblPlayerName.Size = New Size(47, 30)
+        lblPlayerName.TabIndex = 14
+        lblPlayerName.Text = "Lex"
         ' 
-        ' Label2
+        ' lblEnemyName
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = SystemColors.ControlLightLight
-        Label2.Location = New Point(1078, 48)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(105, 30)
-        Label2.TabIndex = 15
-        Label2.Text = "Minotaur"
+        lblEnemyName.AutoSize = True
+        lblEnemyName.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblEnemyName.ForeColor = SystemColors.ControlLightLight
+        lblEnemyName.Location = New Point(956, 48)
+        lblEnemyName.Name = "lblEnemyName"
+        lblEnemyName.Size = New Size(105, 30)
+        lblEnemyName.TabIndex = 15
+        lblEnemyName.Text = "Minotaur"
         ' 
         ' lblscore
         ' 
         lblscore.BackColor = Color.Transparent
-        lblscore.Font = New Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblscore.Location = New Point(461, 12)
+        lblscore.Font = New Font("Ravie", 15.75F, FontStyle.Bold)
+        lblscore.ForeColor = Color.Lime
+        lblscore.Location = New Point(500, 12)
         lblscore.Name = "lblscore"
         lblscore.Size = New Size(254, 43)
         lblscore.TabIndex = 16
         lblscore.Text = "000000"
         ' 
-        ' Form1
+        ' Potion
+        ' 
+        Potion.Image = My.Resources.Resources.potion
+        Potion.Location = New Point(252, 421)
+        Potion.Name = "Potion"
+        Potion.Size = New Size(89, 75)
+        Potion.SizeMode = PictureBoxSizeMode.StretchImage
+        Potion.TabIndex = 17
+        Potion.TabStop = False
+        ' 
+        ' Shield
+        ' 
+        Shield.BackColor = SystemColors.ActiveCaptionText
+        Shield.BackgroundImage = My.Resources.Resources.shield
+        Shield.BackgroundImageLayout = ImageLayout.Stretch
+        Shield.Location = New Point(85, 421)
+        Shield.Name = "Shield"
+        Shield.Size = New Size(85, 75)
+        Shield.SizeMode = PictureBoxSizeMode.StretchImage
+        Shield.TabIndex = 18
+        Shield.TabStop = False
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.BackColor = Color.White
+        Label1.Font = New Font("Segoe UI Emoji", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(252, 497)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(78, 16)
+        Label1.TabIndex = 19
+        Label1.Text = "Potion: 50g"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.BackColor = Color.White
+        Label3.Font = New Font("Segoe UI Emoji", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Location = New Point(87, 497)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(83, 17)
+        Label3.TabIndex = 20
+        Label3.Text = "Shield: 80g"
+        ' 
+        ' lblGold
+        ' 
+        lblGold.AutoSize = True
+        lblGold.Font = New Font("Ravie", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblGold.ForeColor = Color.Yellow
+        lblGold.Location = New Point(60, 545)
+        lblGold.Name = "lblGold"
+        lblGold.Size = New Size(105, 30)
+        lblGold.TabIndex = 21
+        lblGold.Text = "GOLD: "
+        ' 
+        ' btnInstaKill
+        ' 
+        btnInstaKill.Location = New Point(1071, 726)
+        btnInstaKill.Name = "btnInstaKill"
+        btnInstaKill.Size = New Size(75, 23)
+        btnInstaKill.TabIndex = 23
+        btnInstaKill.Text = "InstaKill"
+        btnInstaKill.UseVisualStyleBackColor = True
+        ' 
+        ' picBackground
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
@@ -377,9 +450,15 @@ Partial Class Form1
         BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(1184, 761)
+        Controls.Add(btnInstaKill)
+        Controls.Add(lblGold)
+        Controls.Add(Label3)
+        Controls.Add(Label1)
+        Controls.Add(Shield)
+        Controls.Add(Potion)
         Controls.Add(lblscore)
-        Controls.Add(Label2)
-        Controls.Add(Lex)
+        Controls.Add(lblEnemyName)
+        Controls.Add(lblPlayerName)
         Controls.Add(lblWordDisplay)
         Controls.Add(EnemyHPBar)
         Controls.Add(PlayerHPBar)
@@ -390,7 +469,7 @@ Partial Class Form1
         Controls.Add(EnemyMino)
         Controls.Add(LexWorm)
         FormBorderStyle = FormBorderStyle.FixedSingle
-        Name = "Form1"
+        Name = "picBackground"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Book Journey"
         CType(EnemyMino, ComponentModel.ISupportInitialize).EndInit()
@@ -398,6 +477,8 @@ Partial Class Form1
         CType(LexWorm, ComponentModel.ISupportInitialize).EndInit()
         pnlGrid.ResumeLayout(False)
         tblGrid.ResumeLayout(False)
+        CType(Potion, ComponentModel.ISupportInitialize).EndInit()
+        CType(Shield, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -429,8 +510,14 @@ Partial Class Form1
     Friend WithEvents EnemyHPBar As ProgressBar
     Friend WithEvents lblWordDisplay As Label
     Friend WithEvents DamageFlickerTimer As Timer
-    Friend WithEvents Lex As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblPlayerName As Label
+    Friend WithEvents lblEnemyName As Label
     Friend WithEvents lblscore As Label
+    Friend WithEvents Potion As PictureBox
+    Friend WithEvents Shield As PictureBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents lblGold As Label
+    Friend WithEvents btnInstaKill As Button
 
 End Class

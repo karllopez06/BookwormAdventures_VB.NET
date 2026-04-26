@@ -26,6 +26,7 @@ Partial Class MainMenu
         btnH2P = New Button()
         btnhscores = New Button()
         btnExit = New Button()
+        btnChangeCharacter = New Button()
         SuspendLayout()
         ' 
         ' btnStartGame
@@ -68,6 +69,16 @@ Partial Class MainMenu
         btnExit.Text = "EXIT"
         btnExit.UseVisualStyleBackColor = True
         ' 
+        ' btnChangeCharacter
+        ' 
+        btnChangeCharacter.Font = New Font("Wide Latin", 12F, FontStyle.Bold)
+        btnChangeCharacter.Location = New Point(867, 681)
+        btnChangeCharacter.Name = "btnChangeCharacter"
+        btnChangeCharacter.Size = New Size(282, 56)
+        btnChangeCharacter.TabIndex = 4
+        btnChangeCharacter.Text = "Change Character"
+        btnChangeCharacter.UseVisualStyleBackColor = True
+        ' 
         ' MainMenu
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -75,6 +86,7 @@ Partial Class MainMenu
         BackgroundImage = My.Resources.Resources.image
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(1184, 761)
+        Controls.Add(btnChangeCharacter)
         Controls.Add(btnExit)
         Controls.Add(btnhscores)
         Controls.Add(btnH2P)
@@ -88,4 +100,5 @@ Partial Class MainMenu
     Friend WithEvents btnH2P As Button
     Friend WithEvents btnhscores As Button
     Friend WithEvents btnExit As Button
+    Friend WithEvents btnChangeCharacter As Button
 End Class

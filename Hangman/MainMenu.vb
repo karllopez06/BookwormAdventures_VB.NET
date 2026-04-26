@@ -7,10 +7,38 @@ Public Class MainMenu
     ' PLAYER NAME (shared with Form1)
     '==========================================
     Public Shared PlayerName As String = "Player"
+    Public Shared SelectedCharacter As String = "Lex"
+    Public Shared SelectedCharacterImage As String = "Resources\MainCharacters\Lex.png"
     Private bgMusic As SoundPlayer
     '==========================================
     ' START GAME BUTTON - Get name and launch game
     '==========================================
+
+    Private Sub btnChangeCharacter_Click(sender As Object, e As EventArgs) Handles btnChangeCharacter.Click
+        Dim choice As String = InputBox(
+        "Choose your character:" & vbCrLf & vbCrLf &
+        "Type  1  for Lex" & vbCrLf &
+        "Type  2  for Lyka",
+        "Change Character", "1")
+
+        Select Case choice.Trim()
+            Case "1"
+                SelectedCharacter = "Lex"
+                SelectedCharacterImage = "Resources\MainCharacters\Lex.png"
+                MessageBox.Show("Character set to LEX!",
+                "Character Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Case "2"
+                SelectedCharacter = "Lyka"
+                SelectedCharacterImage = "Resources\MainCharacters\Lyka.png"
+                MessageBox.Show("Character set to LYKA!",
+                "Character Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Case Else
+                If choice.Trim() <> "" Then
+                    MessageBox.Show("Invalid choice! Keeping current character.",
+                    "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+        End Select
+    End Sub
     Private Sub btnStartGame_Click(sender As Object, e As EventArgs) Handles btnStartGame.Click
         ' Show input box for player name (String Functions!)
         Dim inputName As String = InputBox("Enter your name for the highscore:",
@@ -43,7 +71,7 @@ Public Class MainMenu
         Me.Hide()
 
         ' Show Form1 (the game)
-        Dim gameForm As New Form1()
+        Dim gameForm As New picBackground()
         gameForm.ShowDialog()
 
         ' When game closes, show main menu again
@@ -62,33 +90,65 @@ Public Class MainMenu
         instructions &= "╚══════════════════════════════════════╝" & vbCrLf & vbCrLf
 
         instructions &= "OBJECTIVE:" & vbCrLf
-        instructions &= "Defeat the enemy by spelling words!" & vbCrLf & vbCrLf
+        instructions &= "Defeat all 8 enemies by spelling powerful words!" & vbCrLf & vbCrLf
 
         instructions &= "HOW TO PLAY:" & vbCrLf
-        instructions &= "1. Click letter tiles to spell a word (minimum 3 letters)" & vbCrLf
+        instructions &= "1. Click letter tiles to spell a word (min 3 letters)" & vbCrLf
         instructions &= "2. Watch the word display change color:" & vbCrLf
-        instructions &= "   • WHITE = Still typing (less than 3 letters)" & vbCrLf
+        instructions &= "   • DARK  = Still typing (less than 3 letters)" & vbCrLf
         instructions &= "   • GREEN = Valid word!" & vbCrLf
+        instructions &= "   • BRIGHT GREEN = Super Effective word!" & vbCrLf
+        instructions &= "   • ORANGE = Not very effective word" & vbCrLf
         instructions &= "   • RED = Not a real word" & vbCrLf
-        instructions &= "3. Click the ATTACK button to submit your word" & vbCrLf
-        instructions &= "4. Longer words = More damage!" & vbCrLf & vbCrLf
+        instructions &= "3. Click ATTACK to submit your word and deal damage" & vbCrLf
+        instructions &= "4. Longer words = more damage!" & vbCrLf & vbCrLf
 
-        instructions &= "SCORING:" & vbCrLf
-        instructions &= "• Base damage: 5 points per letter" & vbCrLf
-        instructions &= "• Rare letters (Q, Z, X, J, K) give bonus damage" & vbCrLf
+        instructions &= "★ NEW: ELEMENT SYSTEM ★" & vbCrLf
+        instructions &= "Colored tiles have elements — use them strategically!" & vbCrLf
+        instructions &= "   🔥 Fire   beats 🌿 Nature" & vbCrLf
+        instructions &= "   💧 Water  beats 🔥 Fire" & vbCrLf
+        instructions &= "   🌿 Nature beats 💧 Water" & vbCrLf
+        instructions &= "   ⚡ Lightning beats 💧 Water" & vbCrLf
+        instructions &= "   💀 Dark   beats ⚡ Lightning" & vbCrLf
+        instructions &= "More matching element tiles in your word = more bonus!" & vbCrLf
+        instructions &= "   1 tile = x1.2 | 2 tiles = x1.5 | 3+ tiles = x2.0!" & vbCrLf & vbCrLf
+
+        instructions &= "★ NEW: GOLD SYSTEM ★" & vbCrLf
+        instructions &= "Earn Gold by attacking and defeating enemies!" & vbCrLf
+        instructions &= "Spend Gold on powerups — your Score stays safe!" & vbCrLf & vbCrLf
+
+        instructions &= "★ NEW: POWERUPS ★" & vbCrLf
+        instructions &= "   🧪 Potion (50g)  = Restore 40 HP" & vbCrLf
+        instructions &= "   🛡️ Shield (80g)  = Block next enemy attack" & vbCrLf & vbCrLf
+
+        instructions &= "DAMAGE FORMULA:" & vbCrLf
+        instructions &= "• Base: 5 damage per letter" & vbCrLf
+        instructions &= "• Rare letters (Q, Z, X, J, K) = bonus damage" & vbCrLf
         instructions &= "• 6+ letter words: +10 damage" & vbCrLf
-        instructions &= "• 8+ letter words: +20 damage" & vbCrLf & vbCrLf
+        instructions &= "• 8+ letter words: +20 damage" & vbCrLf
+        instructions &= "• Element bonus multiplier applied on top!" & vbCrLf & vbCrLf
 
         instructions &= "CONTROLS:" & vbCrLf
-        instructions &= "• Click letter tiles to build word" & vbCrLf
-        instructions &= "• Click word display to backspace (remove last letter)" & vbCrLf
-        instructions &= "• ATTACK button: Submit word and attack enemy" & vbCrLf
-        instructions &= "• SCRAMBLE button: Get new random letters" & vbCrLf & vbCrLf
+        instructions &= "• Click tiles to build your word" & vbCrLf
+        instructions &= "• Click word display to backspace" & vbCrLf
+        instructions &= "• ATTACK = submit word" & vbCrLf
+        instructions &= "• SCRAMBLE = new letters (-5 HP penalty!)" & vbCrLf & vbCrLf
+
+        instructions &= "ENEMY ROSTER:" & vbCrLf
+        instructions &= "   1. Green Slime (Nature)  → weak to Fire" & vbCrLf
+        instructions &= "   2. Red Slime (Fire)      → weak to Water" & vbCrLf
+        instructions &= "   3. Blue Slime (Water)    → weak to Nature" & vbCrLf
+        instructions &= "   4. Zombie (Dark)         → weak to Lightning" & vbCrLf
+        instructions &= "   5. Golem (Nature)        → weak to Fire" & vbCrLf
+        instructions &= "   6. Minotaur (Fire)       → weak to Water" & vbCrLf
+        instructions &= "   7. Evil Duck (Water)     → weak to Nature" & vbCrLf
+        instructions &= "   8. Shadow Lord (Dark)    → weak to Lightning" & vbCrLf & vbCrLf
 
         instructions &= "TIPS:" & vbCrLf
-        instructions &= "• Enemy attacks back after each of your attacks!" & vbCrLf
-        instructions &= "• Grid refreshes after successful attacks" & vbCrLf
-        instructions &= "• Watch your HP bar carefully!" & vbCrLf
+        instructions &= "• Plan your element tiles across turns — grid only" & vbCrLf
+        instructions &= "  refreshes the tiles YOU used, not the whole board!" & vbCrLf
+        instructions &= "• Save Gold for Shield before tough enemies!" & vbCrLf
+        instructions &= "• After Shadow Lord — enemies loop back harder!" & vbCrLf
 
         ' Show instructions (String display!)
         MessageBox.Show(instructions,
